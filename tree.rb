@@ -10,13 +10,29 @@ end
 
 def build_tree(array)
   root = Node.new(array.shift)
-  parent = root
   right = nil
   left = nil
   array.each do |value|
+    parent = root
+    placed = false
     new_node = Node.new(value, parent, left, right)
-    parent.right = new_node
-    parent = new_node
+    until placed
+      if new_node.value <= parent.value
+        if parent.right.nil?
+          parent.right = new_node
+          placed = true
+        else
+          parent = parent.right
+        end
+      elsif new_node.value >= parent.value
+        if parent.left.nil?
+          parent.left = new_node
+          placed = true
+        else
+          parent = parent.left
+        end
+      end
+    end
   end
   root
 end
@@ -27,6 +43,8 @@ def depth_first_search; end
 
 def dfs_rec; end
 
-array_of_data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
+#array_of_data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 
-# build_tree(array_of_data)
+#build_tree(array_of_data)
+
+test_ary = [5, 7, 3, 2, 6, 4, 16]
