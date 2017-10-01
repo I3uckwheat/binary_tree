@@ -20,17 +20,9 @@ end
 
 def place_node(new_node, parent)
   if new_node.value >= parent.value
-    if parent.right.nil?
-      parent.right = new_node
-    else
-      place_node(new_node, parent.right)
-    end
+    parent.right.nil? ? parent.right = new_node : place_node(new_node, parent.right)
   elsif new_node.value <= parent.value
-    if parent.left.nil?
-      parent.left = new_node
-    else
-      place_node(new_node, parent.left)
-    end
+    parent.left.nil? ? parent.left = new_node : place_node(new_node, parent.left)
   end
 end
 
@@ -45,4 +37,3 @@ def dfs_rec; end
 # build_tree(array_of_data)
 
 # repl.it https://repl.it/LqAws/2
-test_ary = [5, 7, 3, 2, 6, 4, 16]
