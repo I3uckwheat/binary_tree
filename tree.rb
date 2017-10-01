@@ -11,9 +11,8 @@ end
 def build_tree(array)
   root = Node.new(array[0])
   array[1..-1].each do |value|
-    parent = root
-    new_node = Node.new(value, parent)
-    place_node(new_node, parent)
+    new_node = Node.new(value, root)
+    place_node(new_node, root)
   end
   root
 end
