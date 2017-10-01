@@ -1,43 +1,38 @@
 class Node
   attr_accessor :parent, :left, :right, :value
-  def initialize(value = nil, parent = nil, left = nil, right = nil)
+  def initialize(value = nil, parent = nil)
     @parent = parent
-    @left = left
-    @right = right
+    @left = nil
+    @right = nil
     @value = value
   end
 end
 
 def build_tree(array)
   root = Node.new(array[0])
-  right = nil
-  left = nil
   array[1..-1].each do |value|
     parent = root
-    placed = false
-    new_node = Node.new(value, parent, left, right)
-    until placed
-      if new_node.value >= parent.value
-        if parent.right.nil?
-          parent.right = new_node
-          placed = true
-        else
-          parent = parent.right
-        end
-      elsif new_node.value <= parent.value
-        if parent.left.nil?
-          parent.left = new_node
-          placed = true
-        else
-          parent = parent.left
-        end
-      end
-    end
+    new_node = Node.new(value, parent)
+    place_node(new_node, parent)
   end
   root
 end
 
-def place_node(root, )
+def place_node(new_node, parent)
+  if new_node.value >= parent.value
+    if parent.right.nil?
+      parent.right = new_node
+    else
+      place_node(new_node, parent.right)
+    end
+  elsif new_node.value <= parent.value
+    if parent.left.nil?
+      parent.left = new_node
+    else
+      place_node(new_node, parent.left)
+    end
+  end
+end
 
 def breadth_first_search; end
 
