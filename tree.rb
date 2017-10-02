@@ -54,7 +54,13 @@ class BinaryTree
     value
   end
 
-  def dfs_rec; end
+  def dfs_rec(key, node = @root)
+    return if node.nil?
+    left = dfs_rec(key, node.left)
+    return node if node.value == key
+    right = dfs_rec(key, node.right)
+    left || right
+  end
 end
 
 # array_of_data = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
@@ -62,3 +68,4 @@ end
 # build_tree(array_of_data)
 
 # repl.it https://repl.it/LqAws/2
+# ([5, 4, 6, 3, 7, 2, 7])
