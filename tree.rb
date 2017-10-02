@@ -42,7 +42,17 @@ class BinaryTree
     value
   end
 
-  def depth_first_search; end
+  def depth_first_search(key)
+    stack = [@root]
+    value = nil
+    until stack.empty? || !value.nil?
+      node = stack.pop
+      value = node if node.value == key
+      stack << node.right unless node.right.nil?
+      stack << node.left unless node.left.nil?
+    end
+    value
+  end
 
   def dfs_rec; end
 end
