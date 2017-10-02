@@ -33,7 +33,7 @@ class BinaryTree
   def breadth_first_search(key)
     queue = [@root]
     value = nil
-    until queue.empty?
+    until queue.empty? || !value.nil?
       node = queue.shift
       value = node if node.value == key
       queue << node.right unless node.right.nil?
